@@ -8,14 +8,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=openocd
-PKG_SOURCE_VERSION:=v0.10.0-1000-gdb23c13d
+PKG_SOURCE_VERSION:=170002ec2f7b416b25f20291a44dec98bb332a5c
 PKG_VERSION:=$(PKG_SOURCE_VERSION)
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=git://git.code.sf.net/p/openocd/code
-PKG_MIRROR_HASH:=6f8c0ecf240427654ad5e911b44f78996da931209280f4a19c1215802ff14638
+PKG_SOURCE_URL:=https://github.com/Gateworks/openocd.git
+PKG_MIRROR_HASH:=65e0a2e27954113a14c0031dcb1817af59cc87d11bcf7d493f7b26d1058318e5
 
 PKG_LICENSE:=GPL-2.0
 PKG_LICENSE_FILES:=COPYING
@@ -80,6 +80,8 @@ CONFIGURE_ARGS += \
 	MAKEINFO=true \
 	$(if $(CONFIG_PACKAGE_openocd_with_usb),,PKG_CONFIG=false) \
 	--enable-dummy \
+	--enable-imx_gpio \
+	--enable-ftdi \
 	--enable-sysfsgpio
 
 TARGET_CFLAGS += -DRELSTR=\\\"-$(PKG_VERSION)-$(PKG_RELEASE)-OpenWrt\\\"
